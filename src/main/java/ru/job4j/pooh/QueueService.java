@@ -8,23 +8,23 @@ public class QueueService implements Service {
 
     @Override
     public Resp process(Req req) {
-        if (req.method().equals("POST")){
+        if (req.method().equals("POST")) {
             post(req);
             System.out.println(req.method());
             return new Resp(req.text(), 204);
         }
-        if (req.method().equals("GET")){
+        if (req.method().equals("GET")) {
             System.out.println(req.method());
             return get(req);
         }
         return null;
     }
 
-    private void post (Req req) {
+    private void post(Req req) {
         queue.offer(req.text());
     }
 
-    private Resp get (Req req) {
+    private Resp get(Req req) {
         return new Resp(queue.poll(), 200);
     }
 }
