@@ -47,3 +47,8 @@ public class PoohServer {
         new PoohServer().start();
     }
 }
+
+// curl -X POST /queue/weather -d "temperature=18" http://localhost:9000/queue/weather
+// curl -X GET /queue/weather http://localhost:9000/queue/weather
+// curl -X POST /topic/weather -d "temperature=18" http://localhost:9000/queue/weather
+// curl -X GET /topic/weather/ http://localhost:9000/queue/weather/1
