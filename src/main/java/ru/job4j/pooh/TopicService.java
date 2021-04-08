@@ -18,8 +18,9 @@ public class TopicService implements Service {
         if (req.method().equals("POST")) {
             queue.putIfAbsent(nameQueue, new ConcurrentHashMap<>());
             text = req.text();
+            int id = ID.get();
             queue.get(nameQueue).putIfAbsent(ID.getAndIncrement(), new ConcurrentLinkedQueue<>());
-            queue.get(nameQueue).get(ID.get()).add(text);
+            queue.get(nameQueue).get(id).offer(text);
         } else {
             text = queue
                     .getOrDefault(nameQueue, new ConcurrentHashMap<>())
@@ -29,4 +30,3 @@ public class TopicService implements Service {
         return new Resp(text, 200);
     }
 }
-
