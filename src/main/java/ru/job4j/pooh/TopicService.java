@@ -13,7 +13,7 @@ public class TopicService implements Service {
 
     @Override
     public Resp process(Req req) {
-        String nameQueue = req.mode();
+        String nameQueue = req.getQueueName();
         String text;
         if (req.method().equals("POST")) {
             queue.putIfAbsent(nameQueue, new ConcurrentHashMap<>());
